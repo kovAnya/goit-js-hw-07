@@ -26,6 +26,9 @@ function createMarkup(galleryItems) {
 
 function onClick(event) {
   event.preventDefault();
+  if (event.target.nodeName != "IMG") {
+    return;
+  }
   const bigImgUrl = event.target.dataset.source;
   instance = basicLightbox.create(`<img src=${bigImgUrl} width="1280">`);
   instance.show();

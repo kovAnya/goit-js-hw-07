@@ -4,7 +4,14 @@ import { galleryItems } from "./gallery-items.js";
 const gallery = document.querySelector(".gallery");
 
 gallery.insertAdjacentHTML("afterbegin", createMarkup(galleryItems));
-gallery.addEventListener("click", onClick);
+
+const lightbox = new SimpleLightbox(".gallery a", {
+  /* options */
+  captions: true,
+  captionsData: "alt",
+  captionPosition: "bottom",
+  captionDelay: 250,
+});
 
 function createMarkup(galleryItems) {
   const markup = galleryItems.map(({ preview, original, description }) => {
@@ -16,15 +23,4 @@ function createMarkup(galleryItems) {
   </div>`;
   });
   return markup.join("");
-}
-
-function onClick(event) {
-  event.preventDefault();
-  const lightbox = new SimpleLightbox(".gallery a", {
-    /* options */
-    captions: true,
-    captionsData: "alt",
-    captionPosition: "bottom",
-    captionDelay: 250,
-  });
 }
